@@ -1,3 +1,14 @@
+''' 
+sources:
+1. https://stackoverflow.com/questions/5552555/unicodedecodeerror-invalid-continuation-byte
+2. https://www.geeksforgeeks.org/heap-sort/
+3.
+'''
+
+'''
+HEMANSHU BOPPANA: you can create the adjacency list/matrix as a class
+'''
+
 import pandas as pd
 from maxHeap import maxHeap
 from idGenre import idGenre
@@ -11,6 +22,11 @@ ratingData = pd.read_csv('data/u.data', sep='\t')
 
 # extract only movie id and ratings from ratingData
 ratingData = ratingData.iloc[:, 1:3]
+
+'''
+JACK GORDON: you can do the cosine algorithm here
+if you are doing a for loop through all the data points (genreData), create an idGenre object for each data pointso we can group together an id and a genre-match-ranking-number for each 
+'''
 
 # test = maxHeap()
 # obj1 = idGenre(0, 1)
@@ -38,9 +54,7 @@ ratingData = ratingData.iloc[:, 1:3]
 # test.insert(obj10)
 # test.insert(obj11)
 
-
 # test.heapifyUp()
-
 
 # for i in test.movies:
 #   print(f'{i.id} + {i.movieGenre}')
