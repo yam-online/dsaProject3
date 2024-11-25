@@ -19,3 +19,11 @@ class maxHeap:
       self.movies[parent], self.movies[child] = self.movies[child], self.movies[parent]
       child = parent
       parent = (child - 1) // 2
+
+  def heapSort(self):
+    for i in range(len(self.movies - 1, -1, -1)):
+      self.movies[0], self.movies[i] = self.movies[i], self.movies[0]
+      self.heapifyDown()
+
+  def heapifyDown(self):
+    pass
