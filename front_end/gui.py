@@ -1,3 +1,7 @@
+# you have to install tkinter before running this gui
+# it's python3 -m pip install tk
+
+
 import tkinter as tk
 
 # Function to show the movie details page
