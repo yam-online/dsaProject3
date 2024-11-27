@@ -17,7 +17,7 @@ class maxHeap:
     self.movies[0] = self.movies[size - 1]
     self.movies.pop()
 
-    heapifyDown()
+    self.heapifyDown()
     return top
 
   # insert something into the max heap
@@ -37,11 +37,12 @@ class maxHeap:
   def heapSort(self):
     for i in range(len(self.movies) - 1, -1, -1):
       self.movies[0], self.movies[i] = self.movies[i], self.movies[0]
-      self.heapifyDown(size=i+1)
+      # self.heapifyDown(size=i+1)
+      self.heapifyDown(size=i)
 
-  def heapifyDown(self, size=None):
+  def heapifyDown(self, size):
     parent = 0
-    if size is None: size = len(self.movies)
+    # if size is None: size = len(self.movies)
 
     while True:
       left = 2 * parent + 1

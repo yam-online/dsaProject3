@@ -53,7 +53,7 @@ inputId = 1
 movieHeap = maxHeap()
 
 for id in movieData.iloc[:, 0]:
-    if (id == inputId): continue;
+    if (id == inputId): continue
 
     similarity = cosSim(inputId, id)
     idSimObj = idSimilarity(id, similarity)
@@ -65,6 +65,10 @@ for i in range(10):
     names = movieData.iloc[:, 1]
     top = movieHeap.movies.pop()
     print(names[top.id - 1], top.similarity)
+print('\n')
+
+# o = movieHeap.movies.pop()
+# print(movieHeap.movies[-1].similarity)
 
 # Toy Story:                0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
 # ---------------------------------------------------------------
@@ -74,17 +78,14 @@ for i in range(10):
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
 # test = maxHeap()
-# obj1 = idGenre(0, 1)
-# obj2 = idGenre(1, 3)
-# obj3 = idGenre(2, 5)
-# obj4 = idGenre(3, 4)
-# obj5 = idGenre(4, 6)
-# obj6 = idGenre(5, 13)
-# obj7 = idGenre(6, 10)
-# obj8 = idGenre(7, 9)
-# obj9 = idGenre(8, 8)
-# obj10 = idGenre(9, 15)
-# obj11 = idGenre(10, 17)
+# obj1 = idSimilarity(0, 1)
+# obj2 = idSimilarity(0, 2)
+# obj3 = idSimilarity(0, 3)
+# obj4 = idSimilarity(0, 4)
+# obj5 = idSimilarity(0, 5)
+# obj6 = idSimilarity(0, 6)
+# obj7 = idSimilarity(0, 7)
+
 
 
 # test.insert(obj1)
@@ -94,13 +95,10 @@ for i in range(10):
 # test.insert(obj5)
 # test.insert(obj6)
 # test.insert(obj7)
-# test.insert(obj8)
-# test.insert(obj9)
-# test.insert(obj10)
-# test.insert(obj11)
 
-# test.heapifyUp()
+
+# test.heapSort()
 
 # for i in test.movies:
-#   print(f'{i.id} + {i.movieGenre}')
-# print('\n')
+#   print(f'{i.id} + {i.similarity}')
+#   print('\n')
