@@ -10,6 +10,16 @@ class maxHeap:
   def top(self):
     return self.movies[0]
 
+  def pop(self):
+    size = len(self.movies)
+    top = self.top()
+
+    self.movies[0] = self.movies[size - 1]
+    self.movies.pop()
+
+    heapifyDown()
+    return top
+
   # insert something into the max heap
   def insert(self, idSimilarityObj):
     self.movies.append(idSimilarityObj)
@@ -27,7 +37,25 @@ class maxHeap:
   def heapSort(self):
     for i in range(len(self.movies) - 1, -1, -1):
       self.movies[0], self.movies[i] = self.movies[i], self.movies[0]
-      self.heapifyDown()
+      self.heapifyDown(size=i+1)
 
-  def heapifyDown(self):
-    pass
+  def heapifyDown(self, size=None):
+    parent = 0
+    if size is None: size = len(self.movies)
+
+    while True:
+      left = 2 * parent + 1
+      right = 2 * parent + 2
+      largest = parent
+
+      if left < size and self.movies[left].similarity > self.movies[largest].similarity:
+        largest = left
+
+      if right < size and self.movies[right].similarity > self.movies[largest].similarity:
+        largest = right
+
+      if largest == parent:
+        break
+
+      self.movies[parent], self.movies[largest] = self.movies[largest], self.movies[parent]
+      parent = largest

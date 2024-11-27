@@ -60,11 +60,11 @@ for id in movieData.iloc[:, 0]:
     movieHeap.insert(idSimObj)
 
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-# movieHeap.heapSort() <-- this doesnt really work?
+movieHeap.heapSort()
 for i in range(10):
     names = movieData.iloc[:, 1]
-    top = movieHeap.movies[i]
-    print(names[top.id - 1])
+    top = movieHeap.movies.pop()
+    print(names[top.id - 1], top.similarity)
 
 # Toy Story:                0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
 # ---------------------------------------------------------------
