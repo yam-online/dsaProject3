@@ -13,6 +13,7 @@ import pandas as pd
 from math import sqrt
 from maxHeap import maxHeap
 from idSimilarity import idSimilarity
+from adjacencyList import adjacencyList
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
 
@@ -59,16 +60,29 @@ for id in movieData.iloc[:, 0]:
     idSimObj = idSimilarity(id, similarity)
     movieHeap.insert(idSimObj)
 
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-movieHeap.heapSort()
-for i in range(10):
-    names = movieData.iloc[:, 1]
-    top = movieHeap.movies.pop()
-    print(names[top.id - 1], top.similarity)
-print('\n')
+# TESTING adjacency lit
+inputId = 49
+movieGraph = adjacencyList(inputId)
 
-# o = movieHeap.movies.pop()
-# print(movieHeap.movies[-1].similarity)
+for id in movieData.iloc[:, 0]:
+    if (id == inputId): continue
+
+    similarity = cosSim(inputId, id)
+    idSimObj = idSimilarity(id, similarity)
+    movieGraph.insert(inputId, idSimObj)
+
+for v in movieGraph.movies:
+  for similar in movieGraph.movies[v]:
+      print(similar.similarity)
+# TESTING adjacency list
+
+# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+# movieHeap.heapSort()
+# for i in range(10):
+#     names = movieData.iloc[:, 1]
+#     top = movieHeap.movies.pop()
+#     print(names[top.id - 1], top.similarity)
+# print('\n')
 
 # Toy Story:                0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
 # ---------------------------------------------------------------
@@ -77,6 +91,8 @@ print('\n')
 # Goofy Movie:              0|0|0|1|1|1|0|0|0|0|0|0|0|0|1|0|0|0|0
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
+
+# TESTING heap sort
 # test = maxHeap()
 # obj1 = idSimilarity(0, 1)
 # obj2 = idSimilarity(0, 2)
@@ -86,8 +102,6 @@ print('\n')
 # obj6 = idSimilarity(0, 6)
 # obj7 = idSimilarity(0, 7)
 
-
-
 # test.insert(obj1)
 # test.insert(obj2)
 # test.insert(obj3)
@@ -96,9 +110,9 @@ print('\n')
 # test.insert(obj6)
 # test.insert(obj7)
 
-
 # test.heapSort()
 
 # for i in test.movies:
 #   print(f'{i.id} + {i.similarity}')
 #   print('\n')
+# TESTING heap sort
