@@ -60,21 +60,32 @@ for id in movieData.iloc[:, 0]:
     idSimObj = idSimilarity(id, similarity)
     movieHeap.insert(idSimObj)
 
-# TESTING adjacency lit
-inputId = 49
-movieGraph = adjacencyList(inputId)
-
-for id in movieData.iloc[:, 0]:
-    if (id == inputId): continue
-
-    similarity = cosSim(inputId, id)
-    idSimObj = idSimilarity(id, similarity)
-    movieGraph.insert(inputId, idSimObj)
-
-for v in movieGraph.movies:
-  for similar in movieGraph.movies[v]:
-      print(similar.similarity)
 # TESTING adjacency list
+# inputId = 55
+# movieGraph = adjacencyList()
+
+# for id in movieData.iloc[:, 0]:
+#     if (id == inputId): continue
+
+#     similarity = cosSim(inputId, id)
+#     idSimObj = idSimilarity(id, similarity)
+#     movieGraph.insert(inputId, idSimObj)
+# inputId = 66
+# for id in movieData.iloc[:, 0]:
+#     if (id == inputId): continue
+
+#     similarity = cosSim(inputId, id)
+#     idSimObj = idSimilarity(id, similarity)
+#     movieGraph.insert(inputId, idSimObj)
+
+# for v in movieGraph.movies:
+#   print(v)
+#   for similar in movieGraph.movies[v]:
+#       print(similar.id)
+#       print(similar.similarity)
+#   print('\n')
+# TESTING adjacency list
+
 
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 # movieHeap.heapSort()
