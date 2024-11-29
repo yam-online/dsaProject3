@@ -12,6 +12,7 @@ HEMANSHU BOPPANA: you can create the adjacency list/matrix as a class
 import pandas as pd
 from math import sqrt
 from maxHeap import maxHeap
+from quicksort import quicksort
 from idSimilarity import idSimilarity
 from adjacencyList import adjacencyList
 
@@ -89,17 +90,18 @@ for id in movieData.iloc[:, 0]:
 
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 # movieHeap.heapSort()
-# for i in range(10):
-#     names = movieData.iloc[:, 1]
-#     top = movieHeap.movies.pop()
-#     print(names[top.id - 1], top.similarity)
-# print('\n')
+quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
+for i in range(10):
+    names = movieData.iloc[:, 1]
+    top = movieHeap.movies.pop()
+    print(names[top.id - 1], top.similarity)
+print('\n')
 
 # Toy Story:                0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
 # ---------------------------------------------------------------
 # Aladdin & the King:       0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
-# Aladdin:                  0|0|0|1|1|1|0|0|0|0|0|0|1|0|0|0|0|0|0
 # Goofy Movie:              0|0|0|1|1|1|0|0|0|0|0|0|0|0|1|0|0|0|0
+# Aladdin:                  0|0|0|1|1|1|0|0|0|0|0|0|1|0|0|0|0|0|0
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
 
