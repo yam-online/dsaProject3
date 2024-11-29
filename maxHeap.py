@@ -6,20 +6,6 @@ class maxHeap:
   def __init__(self):
     self.movies = []
 
-  # returns the top of the heap
-  def top(self):
-    return self.movies[0]
-
-  def pop(self):
-    size = len(self.movies)
-    top = self.top()
-
-    self.movies[0] = self.movies[size - 1]
-    self.movies.pop()
-
-    self.heapifyDown()
-    return top
-
   # insert something into the max heap
   def insert(self, idSimilarityObj):
     self.movies.append(idSimilarityObj)
