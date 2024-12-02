@@ -48,7 +48,7 @@ def getMovieId():
     return selectedId
 
 # checks if the inputted rating is valid
-def isValidNumber(string):
+def isValidRating(string):
     try:
         val = float(string)
         return (val <= 5 and val >= 0)
@@ -59,11 +59,26 @@ def isValidNumber(string):
 def getRatingInput():
     minRating = input("Enter a minimum required rating (0-5): ")
     
-    while not isValidNumber(minRating):
+    while not isValidRating(minRating):
         minRating = input("Invalid rating, try again (0-5): ")
 
     return float(minRating)
+
+# returns whether or not the provided string is a valid user input for num of recommendations
+def isValidNumber(string):
+    try:
+        val = int(string)
+        return (val <= 20 and val >= 1)
+    except:
+        return False
     
+def getRecommendationsInput():
+    numRecs = input("Enter the number of recommendations you would like (1-20): ")
+
+    while not isValidNumber(numRecs):
+        numRecs = input("Invalid number, try again (1-20): ")
+
+    return int(numRecs)
 
 # cosine similarity algorithm
 # dot product is commutative, so id1 and id2 have no specific order they need to be put in as
@@ -87,6 +102,7 @@ def cosSim(id1, id2):
 # BEGIN PROGRAM FLOW
 selectedId = getMovieId()
 minRating = getRatingInput()
+recommendations = getRecommendationsInput()
 movieHeap = maxHeap()
 
 for id in movieData.iloc[:, 0]:
@@ -95,11 +111,11 @@ for id in movieData.iloc[:, 0]:
     similarity = cosSim(selectedId, id)
     idSimObj = idSimilarity(id, similarity)
     movieHeap.insert(idSimObj)
-
-recommendations = 10 # number of recommendations to make
-count = 0 # number of recommendations made
+    
 movieHeap.heapSort()
 # quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
+
+count = 0 # number of recommendations made
 while count != recommendations and len(movieHeap.movies) > 0:
     titles = movieTitles
     top = movieHeap.movies.pop()
