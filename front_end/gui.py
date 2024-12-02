@@ -13,6 +13,7 @@ def validateMovieInput():
     else:
         error_label.config(text="No movie found. Please spellcheck or enter another movie.")
 
+# validate rating input
 def validateRatingInput():
     ratingInput = rating_entry.get()
     validRating = validation.isValidRating(ratingInput)
@@ -24,6 +25,7 @@ def validateRatingInput():
     else:
         error_label.config(text="Invalid rating, try again (0-5).")
 
+# validate number of recs input
 def validateRecInput():
     recInput = rec_entry.get()
     validRec = validation.isValidNumber(recInput)
@@ -69,6 +71,7 @@ movie_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken"
 movie_entry.pack(pady=10)
 
 movie_entry.bind("<Return>", lambda event: validateMovieInput())
+movie_entry.bind("<Tab>", lambda event: validateMovieInput())
 
 # rating entry label
 rating_label = tk.Label(home_frame, text="Enter a minimum required rating (0-5):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
@@ -79,6 +82,7 @@ rating_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken
 rating_entry.pack(pady=10)
 
 rating_entry.bind("<Return>", lambda event: validateRatingInput())
+rating_entry.bind("<Tab>", lambda event: validateRatingInput())
 
 # recommendations entry label
 rec_label = tk.Label(home_frame, text="Enter the number of recommendations you would like (1-20):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
@@ -89,6 +93,7 @@ rec_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", 
 rec_entry.pack(pady=10)
 
 rec_entry.bind("<Return>", lambda event: validateRecInput())
+rec_entry.bind("<Tab>", lambda event: validateRecInput())
 
 # error label
 error_label = tk.Label(home_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="red")
@@ -117,5 +122,15 @@ rating_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 rating_label.pack(pady=10)
+
+similar_label = tk.Label(
+    movie_details_frame,
+    text="Similar Movies",
+    font=("Helvetica", 20, "bold"),  # Sans-serif font
+    bg="#fae9cf",
+    fg="#986544",
+)
+similar_label.pack(pady=20)
+
 
 m.mainloop()

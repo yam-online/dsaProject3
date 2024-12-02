@@ -23,20 +23,20 @@ def findClosestMovie(userInput):
 # checks if the inputted rating is valid
 def isValidRating(string):
     try:
-        val = int(string)
+        val = float(string)
         if (val <= 5 and val >= 0):
             return val
     except:
         return False
 
 # returns the user inputted minimum rating
-def getRatingInput():
-    minRating = input("Enter a minimum required rating (0-5): ")
+# def getRatingInput():
+#     minRating = input("Enter a minimum required rating (0-5): ")
     
-    while not isValidRating(minRating):
-        minRating = input("Invalid rating, try again (0-5): ")
+#     while not isValidRating(minRating):
+#         minRating = input("Invalid rating, try again (0-5): ")
 
-    return float(minRating)
+#     return float(minRating)
 
 # returns whether or not the provided string is a valid user input for num of recommendations
 def isValidNumber(string):
@@ -47,10 +47,10 @@ def isValidNumber(string):
     except:
         return False
     
-def getRecommendationsInput():
-  numRecs = input("Enter the number of recommendations you would like (1-20): ")
+# def getRecommendationsInput():
+#   numRecs = input("Enter the number of recommendations you would like (1-20): ")
 
-  while not isValidNumber(numRecs):
-      numRecs = input("Invalid number, try again (1-20): ")
+#   while not isValidNumber(numRecs):
+#       numRecs = input("Invalid number, try again (1-20): ")
 
-  return int(numRecs)
+#   return int(numRecs)
