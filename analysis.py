@@ -2,11 +2,7 @@
 sources:
 1. https://stackoverflow.com/questions/5552555/unicodedecodeerror-invalid-continuation-byte
 2. https://www.geeksforgeeks.org/heap-sort/
-3.
-'''
-
-'''
-HEMANSHU BOPPANA: you can create the adjacency list/matrix as a class
+3. https://docs.python.org/3/library/tk.html
 '''
 
 import pandas as pd
@@ -29,11 +25,6 @@ ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', head
 # extract genre columns from movieData
 genreData = movieData.iloc[:, 5:]
 movieTitles = movieData.iloc[:, 1].str.lower().tolist()
-
-'''
-JACK GORDON: you can do the cosine algorithm here
-if you are doing a for loop through all the data points (genreData), create an idSimilarity object for each data point so we can group together an id and a genre-match-ranking-number for each 
-'''
 
 # gets the closest movie title to a given string
 def findClosestMovie(userInput):
