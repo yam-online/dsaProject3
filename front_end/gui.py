@@ -20,9 +20,19 @@ def validateRatingInput():
     if validRating:
         rating_label.config(text=f"Minimum Rating: {validRating}")
         error_label.config(text="")
-        # rating_entry.focus_set()
+        rec_entry.focus_set()
     else:
-        error_label.config(text="Invalid rating, try again (0-5):")
+        error_label.config(text="Invalid rating, try again (0-5).")
+
+def validateRecInput():
+    recInput = rec_entry.get()
+    validRec = validation.isValidNumber(recInput)
+
+    if validRec:
+        error_label.config(text="")
+        show_movie_details()
+    else:
+        error_label.config(text="Invalid number, try again (1-20).")
 
 # function to show the movie details page
 def show_movie_details():
@@ -69,6 +79,16 @@ rating_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken
 rating_entry.pack(pady=10)
 
 rating_entry.bind("<Return>", lambda event: validateRatingInput())
+
+# recommendations entry label
+rec_label = tk.Label(home_frame, text="Enter the number of recommendations you would like (1-20):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
+rec_label.pack(pady=10)
+
+# recommendations entry box
+rec_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
+rec_entry.pack(pady=10)
+
+rec_entry.bind("<Return>", lambda event: validateRecInput())
 
 # error label
 error_label = tk.Label(home_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="red")
