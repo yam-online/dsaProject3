@@ -16,7 +16,7 @@ if you are doing a for loop through all the data points (genreData), create an i
 
 # gets the closest movie title to a given string
 def findClosestMovie(userInput):
-    matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.6)
+    matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.8)
     return matches[0] if matches else None
 
 
