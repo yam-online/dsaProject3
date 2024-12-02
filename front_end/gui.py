@@ -1,4 +1,8 @@
 import tkinter as tk
+# import sys
+# sys.path.insert(0, "C:/Users/hbopp/Downloads/dsaProject3/")
+# from analysis import get_movie_details
+
 
 # function to show the movie details page
 def show_movie_details():
