@@ -11,7 +11,7 @@ HEMANSHU BOPPANA: you can create the adjacency list/matrix as a class
 
 import pandas as pd
 from math import sqrt
-from maxHeap import maxHeap
+from heapsort import heapsort
 from quicksort import quicksort
 from difflib import get_close_matches
 from idSimilarity import idSimilarity
@@ -103,22 +103,22 @@ def cosSim(id1, id2):
 selectedId = getMovieId()
 minRating = getRatingInput()
 recommendations = getRecommendationsInput()
-movieHeap = maxHeap()
+movies = []
 
 for id in movieData.iloc[:, 0]:
     if (id == selectedId): continue
 
     similarity = cosSim(selectedId, id)
     idSimObj = idSimilarity(id, similarity)
-    movieHeap.insert(idSimObj)
+    movies.append(idSimObj)
     
-movieHeap.heapSort()
-# quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
+heapsort(movies)
+# quicksort(movies, 0, len(movies) - 1)
 
 count = 0 # number of recommendations made
-while count != recommendations and len(movieHeap.movies) > 0:
+while count != recommendations and len(movies) > 0:
     titles = movieTitles
-    top = movieHeap.movies.pop()
+    top = movies.pop()
 
     if ratingData[top.id - 1] >= minRating:
         count += 1

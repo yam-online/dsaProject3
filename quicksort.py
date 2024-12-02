@@ -14,7 +14,7 @@ def partition(arr, lo, hi):
 # basic iterative quicksort implementation
 # best case time:   O(nlogn)
 # worst case time:  O(n^2)
-# best case space:  O(log n)
+# best case space:  O(logn)
 # worst case space: O(n^2)
 def quicksort(arr, lo, hi):
     stack = [(lo, hi)]
