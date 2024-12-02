@@ -2,6 +2,9 @@ import tkinter as tk
 
 # function to show the movie details page
 def show_movie_details():
+    user_input = movie_entry.get()
+    movie_title_label.config(text=f"Title: {user_input}")
+
     home_frame.pack_forget()
 
     # display the movie details page
@@ -55,17 +58,5 @@ movie_title_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 movie_title_label.pack(pady=10)
-
-# rating
-movie_rating_label = tk.Label(
-    movie_details_frame, text="Rating: [Sample Rating]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
-)
-movie_rating_label.pack(pady=10)
-
-# genre
-movie_genre_label = tk.Label(
-    movie_details_frame, text="Genre: [Sample Genre]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
-)
-movie_genre_label.pack(pady=10)
 
 m.mainloop()

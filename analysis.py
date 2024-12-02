@@ -15,7 +15,6 @@ from heapsort import heapsort
 from quicksort import quicksort
 from difflib import get_close_matches
 from idSimilarity import idSimilarity
-from adjacencyList import adjacencyList
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
 ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
