@@ -1,14 +1,18 @@
 import tkinter as tk
+import validation
 
 # function to show the movie details page
 def show_movie_details():
-    user_input = movie_entry.get()
-    movie_title_label.config(text=f"Title: {user_input}")
+    userInput = movie_entry.get().lower()
+    closestMovie = validation.getMovieId(userInput)
 
-    home_frame.pack_forget()
-
-    # display the movie details page
-    movie_details_frame.pack(fill="both", expand=True)
+    if closestMovie:
+        movie_title_label.config(text=f"Title: {closestMovie.capitalize()}")
+        home_frame.pack_forget()
+        # display the movie details page
+        movie_details_frame.pack(fill="both", expand=True)
+    else:
+        error_label.config(text="No movie found. Please try again or enter another movie.", fg="red")
 
 # create the main window
 m = tk.Tk()
@@ -40,7 +44,11 @@ movie_entry.pack(pady=10)
 
 movie_entry.bind("<Return>", lambda event: show_movie_details())
 
-# reate the movie details frame
+# error label
+error_label = tk.Label(home_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="red")
+error_label.pack(pady=5)
+
+# create the movie details frame
 movie_details_frame = tk.Frame(m, bg="#fae9cf")
 
 # movie Details Page: Title
