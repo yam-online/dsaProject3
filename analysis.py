@@ -35,7 +35,7 @@ def findClosestMovie(userInput):
     return matches[0] if matches else None
 
 # returns the id associated with the user inputted title
-def getMovieInput():
+def getMovieId():
     inputTitle = input("Enter a movie title: ").lower()
     title = findClosestMovie(inputTitle)
 
@@ -46,6 +46,24 @@ def getMovieInput():
 
     selectedId = movieTitles.index(title) + 1
     return selectedId
+
+# checks if the inputted rating is valid
+def isValidNumber(string):
+    try:
+        val = float(string)
+        return (val <= 5 and val >= 0)
+    except:
+        return False
+
+# returns the user inputted minimum rating
+def getRatingInput():
+    minRating = input("Enter a minimum required rating (0-5): ")
+    
+    while not isValidNumber(minRating):
+        minRating = input("Invalid rating, try again (0-5): ")
+
+    return float(minRating)
+    
 
 # cosine similarity algorithm
 # dot product is commutative, so id1 and id2 have no specific order they need to be put in as
@@ -67,7 +85,8 @@ def cosSim(id1, id2):
     return similarity
 
 # BEGIN PROGRAM FLOW
-selectedId = getMovieInput()
+selectedId = getMovieId()
+minRating = getRatingInput()
 movieHeap = maxHeap()
 
 for id in movieData.iloc[:, 0]:
@@ -79,7 +98,6 @@ for id in movieData.iloc[:, 0]:
 
 recommendations = 10 # number of recommendations to make
 count = 0 # number of recommendations made
-minRating = 3 # rating cutoff
 movieHeap.heapSort()
 # quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
 while count != recommendations and len(movieHeap.movies) > 0:
