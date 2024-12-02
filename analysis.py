@@ -5,14 +5,11 @@ sources:
 3.
 '''
 
-'''
-HEMANSHU BOPPANA: you can create the adjacency list/matrix as a class
-'''
-
 import pandas as pd
 from math import sqrt
 from maxHeap import maxHeap
 from idSimilarity import idSimilarity
+
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
 
@@ -23,6 +20,18 @@ ratingData = pd.read_csv('data/u.data', sep='\t', header=None)
 
 # extract only movie id and ratings from ratingData
 ratingData = ratingData.iloc[:, 1:3]
+ratings = ratingData.iloc[:, 3]
+
+# function needed to cleanly extract movie details from data
+def get_movie_details(title):
+    # Check if the title exists in the database
+    if title in names.values:
+        index = names[names == title].index[0]
+        genres = genreData.columns[genreData.iloc[index] == 1].tolist()
+        avg_rating = ratings.mean()  # Replace with actual movie-specific ratings if needed
+        return title, genres, avg_rating
+    else:
+        return None
 
 '''
 JACK GORDON: you can do the cosine algorithm here
