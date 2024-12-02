@@ -18,19 +18,34 @@ from idSimilarity import idSimilarity
 from adjacencyList import adjacencyList
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
+ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
 
 # extract genre columns from movieData
 genreData = movieData.iloc[:, 5:]
-ratingData = pd.read_csv('data/u.data', sep='\t', header=None)
 movieTitles = movieData.iloc[:, 1].str.lower().tolist()
-
-# extract only movie id and ratings from ratingData
-ratingData = ratingData.iloc[:, 1:3]
 
 '''
 JACK GORDON: you can do the cosine algorithm here
 if you are doing a for loop through all the data points (genreData), create an idSimilarity object for each data point so we can group together an id and a genre-match-ranking-number for each 
 '''
+
+# gets the closest movie title to a given string
+def findClosestMovie(userInput):
+    matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.6)
+    return matches[0] if matches else None
+
+# returns the id associated with the user inputted title
+def getMovieInput():
+    inputTitle = input("Enter a movie title: ").lower()
+    title = findClosestMovie(inputTitle)
+
+    # input validation
+    while title is None:
+        inputTitle = input("No movie found, please enter a new title: ").lower()
+        title = findClosestMovie(inputTitle)
+
+    selectedId = movieTitles.index(title) + 1
+    return selectedId
 
 # cosine similarity algorithm
 # dot product is commutative, so id1 and id2 have no specific order they need to be put in as
@@ -51,20 +66,8 @@ def cosSim(id1, id2):
     similarity = dotProduct / sqrt(sum1) / sqrt(sum2)
     return similarity
 
-# get user movie input
-def findClosestMovie(userInput):
-    matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.6)
-    return matches[0] if matches else None
-
-inputTitle = input("Enter a movie title: ").lower()
-title = findClosestMovie(inputTitle)
-
-# input validation
-while title is None:
-    inputTitle = input("No movie found, please enter a new title: ").lower()
-    title = findClosestMovie(inputTitle)
-
-selectedId = movieTitles.index(title) + 1
+# BEGIN PROGRAM FLOW
+selectedId = getMovieInput()
 movieHeap = maxHeap()
 
 for id in movieData.iloc[:, 0]:
@@ -73,6 +76,20 @@ for id in movieData.iloc[:, 0]:
     similarity = cosSim(selectedId, id)
     idSimObj = idSimilarity(id, similarity)
     movieHeap.insert(idSimObj)
+
+recommendations = 10 # number of recommendations to make
+count = 0 # number of recommendations made
+minRating = 3 # rating cutoff
+movieHeap.heapSort()
+# quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
+while count != recommendations and len(movieHeap.movies) > 0:
+    titles = movieTitles
+    top = movieHeap.movies.pop()
+
+    if ratingData[top.id - 1] >= minRating:
+        count += 1
+        print(titles[top.id - 1], top.similarity)
+print('\n')
 
 # TESTING adjacency list
 # inputId = 55
@@ -99,24 +116,6 @@ for id in movieData.iloc[:, 0]:
 #       print(similar.similarity)
 #   print('\n')
 # TESTING adjacency list
-
-
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-# movieHeap.heapSort()
-quicksort(movieHeap.movies, 0, len(movieHeap.movies) - 1)
-for i in range(10):
-    names = movieData.iloc[:, 1]
-    top = movieHeap.movies.pop()
-    print(names[top.id - 1], top.similarity)
-print('\n')
-
-# Toy Story:                0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
-# ---------------------------------------------------------------
-# Aladdin & the King:       0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0
-# Goofy Movie:              0|0|0|1|1|1|0|0|0|0|0|0|0|0|1|0|0|0|0
-# Aladdin:                  0|0|0|1|1|1|0|0|0|0|0|0|1|0|0|0|0|0|0
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
 
 # TESTING heap sort
 # test = maxHeap()
