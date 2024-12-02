@@ -17,6 +17,13 @@ from difflib import get_close_matches
 from idSimilarity import idSimilarity
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
+
+# Remove the year information from the movie titles (column 1)
+movieData[1] = movieData[1].str.replace(r' \(\d{4}\)', '', regex=True)
+movieData.to_csv('data/u.item', sep='|', encoding='latin-1', index=False, header=False)
+
+movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
+
 ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
 
 # extract genre columns from movieData
