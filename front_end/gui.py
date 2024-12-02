@@ -70,6 +70,7 @@ entry_label.pack(pady=10)
 movie_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
 movie_entry.pack(pady=10)
 
+# check movie input
 movie_entry.bind("<Return>", lambda event: validateMovieInput())
 movie_entry.bind("<Tab>", lambda event: validateMovieInput())
 
@@ -81,6 +82,7 @@ rating_label.pack(pady=10)
 rating_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
 rating_entry.pack(pady=10)
 
+# check rating input
 rating_entry.bind("<Return>", lambda event: validateRatingInput())
 rating_entry.bind("<Tab>", lambda event: validateRatingInput())
 
@@ -92,6 +94,7 @@ rec_label.pack(pady=10)
 rec_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
 rec_entry.pack(pady=10)
 
+# check recs input
 rec_entry.bind("<Return>", lambda event: validateRecInput())
 rec_entry.bind("<Tab>", lambda event: validateRecInput())
 
@@ -112,12 +115,13 @@ details_title_label = tk.Label(
 )
 details_title_label.pack(pady=20)
 
-# title
+# display title
 movie_title_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 movie_title_label.pack(pady=10)
 
+# display rating
 rating_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
@@ -131,6 +135,5 @@ similar_label = tk.Label(
     fg="#986544",
 )
 similar_label.pack(pady=20)
-
 
 m.mainloop()
