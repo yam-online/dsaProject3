@@ -1,10 +1,13 @@
 import tkinter as tk
 import validation
 
+# validate movie input
+
+
 # function to show the movie details page
 def show_movie_details():
     userInput = movie_entry.get().lower()
-    closestMovie = validation.getMovieId(userInput)
+    closestMovie = validation.findClosestMovie(userInput)
 
     if closestMovie:
         movie_title_label.config(text=f"Title: {closestMovie.capitalize()}")
@@ -43,6 +46,16 @@ movie_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken"
 movie_entry.pack(pady=10)
 
 movie_entry.bind("<Return>", lambda event: show_movie_details())
+
+# rating entry label
+rating_label = tk.Label(home_frame, text="Enter a minimum required rating (0-5)", font=("Arial", 12), bg="#fae9cf", fg="#986544")
+rating_label.pack(pady=10)
+
+# rating entry box
+rating_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
+rating_entry.pack(pady=10)
+
+rating_entry.bind("<Return>", lambda event: show_movie_details())
 
 # error label
 error_label = tk.Label(home_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="red")

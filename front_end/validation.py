@@ -19,29 +19,6 @@ def findClosestMovie(userInput):
     matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.6)
     return matches[0] if matches else None
 
-# # returns the id associated with the user inputted title
-# def getMovieId():
-#     inputTitle = input("Enter a movie title: ").lower()
-#     title = findClosestMovie(inputTitle)
-
-#     # input validation
-#     while title is None:
-#         inputTitle = input("No movie found, please enter a new title: ").lower()
-#         title = findClosestMovie(inputTitle)
-
-#     selectedId = movieTitles.index(title) + 1
-#     return selectedId
-
-def getMovieId(userInput):
-    inputTitle = userInput.lower()
-    title = findClosestMovie(inputTitle)
-
-    # input validation
-    if title is None:
-        return None
-
-    return title
-
 
 # checks if the inputted rating is valid
 def isValidRating(string):
