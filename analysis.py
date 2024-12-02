@@ -88,5 +88,4 @@ while count != recommendations and len(movieHeap.movies) > 0:
 
     if ratingData[top.id - 1] >= minRating:
         count += 1
-        print(titles[top.id - 1], top.similarity)
-print('\n')
+        print(titles[top.id - 1], "\nRating:", ratingData[top.id - 1], "\nSimilarity:", top.similarity, "\n")
