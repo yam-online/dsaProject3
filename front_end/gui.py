@@ -136,4 +136,31 @@ similar_label = tk.Label(
 )
 similar_label.pack(pady=20)
 
+# restart the process without xing out
+def back_button():
+    # clear everything
+    movie_entry.delete(0, tk.END)
+    rating_entry.delete(0, tk.END)
+    rec_entry.delete(0, tk.END)
+    error_label.config(text="")
+    movie_title_label.config(text="Title: [Sample Title]")
+    rating_label.config(text="Minimum Rating: [Sample Rating]")
+
+    # hide the movie details frame and show the home frame
+    movie_details_frame.pack_forget()
+    home_frame.pack(fill="both", expand=True)
+
+# back button implementation in the movie details frame
+back_button = tk.Button(
+    movie_details_frame,
+    text="Back",
+    font=("Helvetica", 12, "bold"),
+    bg="#986544",
+    fg="white",
+    relief="raised",
+    command=back_button,
+)
+back_button.pack(pady=20)
+
+
 m.mainloop()
