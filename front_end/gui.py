@@ -2,20 +2,33 @@ import tkinter as tk
 import validation
 
 # validate movie input
-
-
-# function to show the movie details page
-def show_movie_details():
-    userInput = movie_entry.get().lower()
-    closestMovie = validation.findClosestMovie(userInput)
+def validateMovieInput():
+    movieInput = movie_entry.get().lower()
+    closestMovie = validation.findClosestMovie(movieInput)
 
     if closestMovie:
         movie_title_label.config(text=f"Title: {closestMovie.capitalize()}")
-        home_frame.pack_forget()
-        # display the movie details page
-        movie_details_frame.pack(fill="both", expand=True)
+        error_label.config(text="")
+        rating_entry.focus_set()
     else:
-        error_label.config(text="No movie found. Please try again or enter another movie.", fg="red")
+        error_label.config(text="No movie found. Please spellcheck or enter another movie.")
+
+def validateRatingInput():
+    ratingInput = rating_entry.get()
+    validRating = validation.isValidRating(ratingInput)
+
+    if validRating:
+        rating_label.config(text=f"Minimum Rating: {validRating}")
+        error_label.config(text="")
+        # rating_entry.focus_set()
+    else:
+        error_label.config(text="Invalid rating, try again (0-5):")
+
+# function to show the movie details page
+def show_movie_details():
+    home_frame.pack_forget()
+    # display the movie details page
+    movie_details_frame.pack(fill="both", expand=True)
 
 # create the main window
 m = tk.Tk()
@@ -45,17 +58,17 @@ entry_label.pack(pady=10)
 movie_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
 movie_entry.pack(pady=10)
 
-movie_entry.bind("<Return>", lambda event: show_movie_details())
+movie_entry.bind("<Return>", lambda event: validateMovieInput())
 
 # rating entry label
-rating_label = tk.Label(home_frame, text="Enter a minimum required rating (0-5)", font=("Arial", 12), bg="#fae9cf", fg="#986544")
+rating_label = tk.Label(home_frame, text="Enter a minimum required rating (0-5):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
 rating_label.pack(pady=10)
 
 # rating entry box
 rating_entry = tk.Entry(home_frame, width=40, font=("Arial", 12), relief="sunken", bd=4)
 rating_entry.pack(pady=10)
 
-rating_entry.bind("<Return>", lambda event: show_movie_details())
+rating_entry.bind("<Return>", lambda event: validateRatingInput())
 
 # error label
 error_label = tk.Label(home_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="red")
@@ -79,5 +92,10 @@ movie_title_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 movie_title_label.pack(pady=10)
+
+rating_label = tk.Label(
+    movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+)
+rating_label.pack(pady=10)
 
 m.mainloop()

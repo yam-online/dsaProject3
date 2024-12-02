@@ -22,10 +22,10 @@ def findClosestMovie(userInput):
 
 # checks if the inputted rating is valid
 def isValidRating(string):
-    try:
-        val = float(string)
-        return (val <= 5 and val >= 0)
-    except:
+    val = int(string)
+    if (val <= 5 and val >= 0):
+        return val
+    else:
         return False
 
 # returns the user inputted minimum rating
