@@ -13,6 +13,7 @@ import pandas as pd
 from math import sqrt
 from maxHeap import maxHeap
 from quicksort import quicksort
+from difflib import get_close_matches
 from idSimilarity import idSimilarity
 from adjacencyList import adjacencyList
 
@@ -20,8 +21,8 @@ movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
 
 # extract genre columns from movieData
 genreData = movieData.iloc[:, 5:]
-
 ratingData = pd.read_csv('data/u.data', sep='\t', header=None)
+movieTitles = movieData.iloc[:, 1].str.lower().tolist()
 
 # extract only movie id and ratings from ratingData
 ratingData = ratingData.iloc[:, 1:3]
@@ -39,7 +40,7 @@ def cosSim(id1, id2):
     vector2 = genreData.iloc[id2 - 1]
     dotProduct = sum1 = sum2 = 0
 
-    # because we know our data only contains 0 or 1 for the vector entries (whose squares are themselves 0 or 1 respectively)
+    # because we know our data only contains 0 or 1 for the vector entries   (whose squares are themselves 0 or 1 respectively)
     # we can just use a normal sum instead of a sum of sqaures for finding the magnitude at then end, as theyll be the same
     
     for component1, component2 in zip(vector1, vector2):
@@ -50,14 +51,26 @@ def cosSim(id1, id2):
     similarity = dotProduct / sqrt(sum1) / sqrt(sum2)
     return similarity
 
-# TODO: Replace this placeholder with user-inputted movie id
-inputId = 1
+# get user movie input
+def findClosestMovie(userInput):
+    matches = get_close_matches(userInput, movieTitles, n=1, cutoff=0.6)
+    return matches[0] if matches else None
+
+inputTitle = input("Enter a movie title: ").lower()
+title = findClosestMovie(inputTitle)
+
+# input validation
+while title is None:
+    inputTitle = input("No movie found, please enter a new title: ").lower()
+    title = findClosestMovie(inputTitle)
+
+selectedId = movieTitles.index(title) + 1
 movieHeap = maxHeap()
 
 for id in movieData.iloc[:, 0]:
-    if (id == inputId): continue
+    if (id == selectedId): continue
 
-    similarity = cosSim(inputId, id)
+    similarity = cosSim(selectedId, id)
     idSimObj = idSimilarity(id, similarity)
     movieHeap.insert(idSimObj)
 
