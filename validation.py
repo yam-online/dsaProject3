@@ -1,12 +1,12 @@
 import pandas as pd
 from math import sqrt
-import idSimilarity
-import heapsort
-import quicksort
+from idSimilarity import idSimilarity
+from heapsort import heapsort
+from quicksort import quicksort
 from difflib import get_close_matches
 
-movieData = pd.read_csv('../data/u.item', sep='|', encoding='latin-1', header=None)
-ratingData = pd.read_csv('../data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
+movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
+ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
 
 # extract genre columns from movieData
 genreData = movieData.iloc[:, 5:]
@@ -73,9 +73,8 @@ def similarMovies(movieTitle, minRating, rec):
     heapsort(movies)
     # quicksort(movies, 0, len(movies) - 1)
 
-    recMovieTitles = []
-    recMovieRatings = []
-    recMovieSimilarity = []
+    recMoviesList = []
+
     count = 0 # number of recommendations made
     while count != recommendations and len(movies) > 0:
         titles = movieTitles
@@ -83,7 +82,6 @@ def similarMovies(movieTitle, minRating, rec):
 
         if ratingData[top.id - 1] >= minRating:
             count += 1
-            recMovieTitles.append(titles[top.id - 1])
-            recMovieRatings.append(ratingData[top.id - 1])
-            recMovieSimilarity.append(top.similarity)
-    return recMovieTitles, recMovieRatings, recMovieSimilarity
+            recMoviesList.append(f"{count}. '{titles[top.id - 1].capitalize()}' ● Rating: {ratingData[top.id - 1]:.2f} ● Similarity: {top.similarity:.3f}\n")
+
+    return recMoviesList

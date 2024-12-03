@@ -1,6 +1,5 @@
 import tkinter as tk
 import validation
-import analysis
 
 # validate movie input
 def validateMovieInput():
@@ -34,7 +33,7 @@ def validateRecInput():
     if validRec:
         error_label.config(text="")
         movieTitle = validation.findClosestMovie(movie_entry.get().lower())
-        movieRating = rec_entry.get()
+        movieRating = float(rating_entry.get())
         show_movie_details(movieTitle, movieRating, validRec)
     else:
         error_label.config(text="Invalid number, try again (1-20).")
@@ -42,9 +41,13 @@ def validateRecInput():
 # function to show the movie details page
 def show_movie_details(title, rating, rec):
 
-    recMovieTitles, recMovieRatings, recMovieSimilarity = validation.similarMovies(title, rating, rec)
+    recMoviesList = validation.similarMovies(title, rating, rec)
 
-    movies_list_label.config(text="")
+    movies_list = ""
+    for movie in recMoviesList:
+        movies_list += movie
+
+    movies_list_label.config(text=movies_list)
 
     home_frame.pack_forget()
     # display the movie details page
@@ -121,28 +124,28 @@ details_title_label = tk.Label(
     bg="#fae9cf",
     fg="#986544",
 )
-details_title_label.pack(pady=20)
+details_title_label.pack(pady=15)
 
 # display title
 movie_title_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
-movie_title_label.pack(pady=10)
+movie_title_label.pack(pady=5)
 
 # display rating
 rating_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
-rating_label.pack(pady=10)
+rating_label.pack(pady=5)
 
 similar_label = tk.Label(
     movie_details_frame,
-    text="Similar Movies",
+    text="Similar Movies:",
     font=("Helvetica", 20, "bold"),  # Sans-serif font
     bg="#fae9cf",
     fg="#986544",
 )
-similar_label.pack(pady=20)
+similar_label.pack(pady=15)
 
 # display movies
 movies_list_label = tk.Label(
