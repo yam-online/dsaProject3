@@ -134,13 +134,13 @@ details_title_label.pack(pady=15)
 
 # display title
 movie_title_label = tk.Label(
-    movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+    movie_details_frame, text="[Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 movie_title_label.pack(pady=5)
 
 # display rating
 rating_label = tk.Label(
-    movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+    movie_details_frame, text="[movie rating]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 rating_label.pack(pady=5)
 
@@ -156,7 +156,7 @@ similar_label.pack(pady=15)
 
 # display similar movies
 movies_list_label = tk.Label(
-    movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+    movie_details_frame, text="[list of similar movies]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 movies_list_label.pack(pady=10)
 
