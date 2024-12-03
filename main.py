@@ -140,7 +140,7 @@ movie_title_label.pack(pady=5)
 
 # display rating
 rating_label = tk.Label(
-    movie_details_frame, text="[movie rating]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+    movie_details_frame, text="", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
 rating_label.pack(pady=5)
 
