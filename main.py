@@ -1,3 +1,9 @@
+''' 
+analysis.py acts as program to analyze the time complexities of heapsort vs quicksort in the terminal
+
+main.py acts as our frontend program for aesthetics
+'''
+
 import tkinter as tk
 import validation
 
@@ -138,6 +144,7 @@ rating_label = tk.Label(
 )
 rating_label.pack(pady=5)
 
+# similar movies label
 similar_label = tk.Label(
     movie_details_frame,
     text="Similar Movies:",
@@ -147,7 +154,7 @@ similar_label = tk.Label(
 )
 similar_label.pack(pady=15)
 
-# display movies
+# display similar movies
 movies_list_label = tk.Label(
     movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
 )
@@ -178,6 +185,5 @@ back_button = tk.Button(
     command=back_button,
 )
 back_button.pack(pady=20)
-
 
 m.mainloop()

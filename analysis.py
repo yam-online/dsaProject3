@@ -1,4 +1,8 @@
 ''' 
+analysis.py acts as program to analyze the time complexities of heapsort vs quicksort in the terminal
+
+main.py acts as our frontend program for aesthetics
+
 sources:
 1. https://stackoverflow.com/questions/5552555/unicodedecodeerror-invalid-continuation-byte
 2. https://www.geeksforgeeks.org/heap-sort/

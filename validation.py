@@ -1,10 +1,12 @@
+# from ANALYSIS.PY, reformatted for tkinter
+
 import pandas as pd
 from math import sqrt
-# from analysis import cosSim
 from idSimilarity import idSimilarity
 from heapsort import heapsort
 from quicksort import quicksort
 from difflib import get_close_matches
+from math import sqrt
 
 movieData = pd.read_csv('data/u.item', sep='|', encoding='latin-1', header=None)
 ratingData = pd.read_csv('data/item_avg.tsv', sep='\t', encoding='latin-1', header=None).iloc[:, 1]
@@ -37,9 +39,7 @@ def isValidNumber(string):
     except:
         return False
 
-
-from math import sqrt
-
+# cosine similarity algorithm
 def cosSim(id1, id2):
     # ids are 1 indexed, the table is 0 indexed.
     vector1 = genreData.iloc[id1 - 1]
@@ -57,7 +57,7 @@ def cosSim(id1, id2):
     similarity = dotProduct / sqrt(sum1) / sqrt(sum2)
     return similarity
 
-# BEGIN PROGRAM FLOW
+# find similar movies, heapsort, quicksort
 def similarMovies(movieTitle, minRating, rec):
     selectedId = movieTitles.index(movieTitle) + 1
     minRating = minRating
@@ -86,3 +86,4 @@ def similarMovies(movieTitle, minRating, rec):
             recMoviesList.append(f'{count}. "{titles[top.id - 1].capitalize()}" ● Rating: {ratingData[top.id - 1]:.2f} ● Similarity: {top.similarity:.3f}\n')
 
     return recMoviesList
+# from ANALYSIS.PY, reformatted for tkinter
