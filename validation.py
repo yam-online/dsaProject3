@@ -83,6 +83,6 @@ def similarMovies(movieTitle, minRating, rec):
 
         if ratingData[top.id - 1] >= minRating:
             count += 1
-            recMoviesList.append(f"{count}. '{titles[top.id - 1].capitalize()}' ● Rating: {ratingData[top.id - 1]:.2f} ● Similarity: {top.similarity:.3f}\n")
+            recMoviesList.append(f'{count}. "{titles[top.id - 1].capitalize()}" ● Rating: {ratingData[top.id - 1]:.2f} ● Similarity: {top.similarity:.3f}\n')
 
     return recMoviesList
