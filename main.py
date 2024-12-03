@@ -1,5 +1,6 @@
 import tkinter as tk
 import validation
+import analysis
 
 # validate movie input
 def validateMovieInput():
@@ -18,7 +19,7 @@ def validateRatingInput():
     ratingInput = rating_entry.get()
     validRating = validation.isValidRating(ratingInput)
 
-    if validRating:
+    if validRating == 0 or validRating:
         rating_label.config(text=f"Minimum Rating: {validRating}")
         error_label.config(text="")
         rec_entry.focus_set()
@@ -32,12 +33,19 @@ def validateRecInput():
 
     if validRec:
         error_label.config(text="")
-        show_movie_details()
+        movieTitle = validation.findClosestMovie(movie_entry.get().lower())
+        movieRating = rec_entry.get()
+        show_movie_details(movieTitle, movieRating, validRec)
     else:
         error_label.config(text="Invalid number, try again (1-20).")
 
 # function to show the movie details page
-def show_movie_details():
+def show_movie_details(title, rating, rec):
+
+    recMovieTitles, recMovieRatings, recMovieSimilarity = validation.similarMovies(title, rating, rec)
+
+    movies_list_label.config(text="")
+
     home_frame.pack_forget()
     # display the movie details page
     movie_details_frame.pack(fill="both", expand=True)
@@ -135,6 +143,12 @@ similar_label = tk.Label(
     fg="#986544",
 )
 similar_label.pack(pady=20)
+
+# display movies
+movies_list_label = tk.Label(
+    movie_details_frame, text="Title: [Sample Title]", font=("Arial", 12), bg="#fae9cf", fg="#986544"
+)
+movies_list_label.pack(pady=10)
 
 # restart the process without xing out
 def back_button():

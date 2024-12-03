@@ -3,9 +3,11 @@ sources:
 1. https://stackoverflow.com/questions/5552555/unicodedecodeerror-invalid-continuation-byte
 2. https://www.geeksforgeeks.org/heap-sort/
 3. https://docs.python.org/3/library/tk.html
+4. https://stackoverflow.com/questions/7370801/how-do-i-measure-elapsed-time-in-python
 '''
 
 import pandas as pd
+import time
 from math import sqrt
 from heapsort import heapsort
 from quicksort import quicksort
@@ -108,9 +110,14 @@ for id in movieData.iloc[:, 0]:
     similarity = cosSim(selectedId, id)
     idSimObj = idSimilarity(id, similarity)
     movies.append(idSimObj)
-    
+
+# time complexity analysis with a timer
+startTime = time.time()
 heapsort(movies)
 # quicksort(movies, 0, len(movies) - 1)
+endTime = time.time()
+
+print(endTime - startTime)
 
 count = 0 # number of recommendations made
 while count != recommendations and len(movies) > 0:
