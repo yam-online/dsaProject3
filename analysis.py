@@ -67,15 +67,15 @@ def getRatingInput():
 def isValidNumber(string):
     try:
         val = int(string)
-        return (val <= 20 and val >= 1)
+        return (val <= 15 and val >= 1)
     except:
         return False
     
 def getRecommendationsInput():
-    numRecs = input("Enter the number of recommendations you would like (1-20): ")
+    numRecs = input("Enter the number of recommendations you would like (1-15): ")
 
     while not isValidNumber(numRecs):
-        numRecs = input("Invalid number, try again (1-20): ")
+        numRecs = input("Invalid number, try again (1-15): ")
 
     return int(numRecs)
 

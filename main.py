@@ -36,7 +36,7 @@ def validateRecInput():
         movieRating = float(rating_entry.get())
         show_movie_details(movieTitle, movieRating, validRec)
     else:
-        error_label.config(text="Invalid number, try again (1-20).")
+        error_label.config(text="Invalid number, try again (1-15).")
 
 # function to show the movie details page
 def show_movie_details(title, rating, rec):
@@ -98,7 +98,7 @@ rating_entry.bind("<Return>", lambda event: validateRatingInput())
 rating_entry.bind("<Tab>", lambda event: validateRatingInput())
 
 # recommendations entry label
-rec_label = tk.Label(home_frame, text="Enter the number of recommendations you would like (1-20):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
+rec_label = tk.Label(home_frame, text="Enter the number of recommendations you would like (1-15):", font=("Arial", 12), bg="#fae9cf", fg="#986544")
 rec_label.pack(pady=10)
 
 # recommendations entry box

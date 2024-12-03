@@ -1,5 +1,6 @@
 import pandas as pd
 from math import sqrt
+# from analysis import cosSim
 from idSimilarity import idSimilarity
 from heapsort import heapsort
 from quicksort import quicksort
@@ -31,7 +32,7 @@ def isValidRating(string):
 def isValidNumber(string):
     try:
         val = int(string)
-        if (val <= 20 and val >= 1):
+        if (val <= 15 and val >= 1):
             return val
     except:
         return False
