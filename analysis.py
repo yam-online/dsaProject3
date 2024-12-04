@@ -118,10 +118,14 @@ for id in movieData.iloc[:, 0]:
 # time complexity analysis with a timer
 startTime = time.time()
 heapsort(movies)
-# quicksort(movies, 0, len(movies) - 1)
 endTime = time.time()
+print("Heapsort time:", endTime - startTime, "seconds")
 
-print(endTime - startTime)
+moviesCopy = movies.copy()
+quicksortStartTime = time.time()
+quicksort(moviesCopy, 0, len(movies) - 1)
+quicksortEndtime = time.time()
+print("Quicksort time:", quicksortEndtime - quicksortStartTime, "seconds\n")
 
 count = 0 # number of recommendations made
 while count != recommendations and len(movies) > 0:
