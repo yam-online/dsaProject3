@@ -24,8 +24,9 @@ def validateRatingInput():
     ratingInput = rating_entry.get()
     validRating = validation.isValidRating(ratingInput)
 
-    if validRating == 0 or validRating:
-        rating_label.config(text=f"Minimum Rating: {validRating}")
+    if validRating:
+        rating = float(ratingInput)
+        rating_label.config(text=f"Minimum Rating: {rating}")
         error_label.config(text="")
         rec_entry.focus_set()
     else:
@@ -37,16 +38,16 @@ def validateRecInput():
     validRec = validation.isValidNumber(recInput)
 
     if validRec:
+        rec = int(recInput)
         error_label.config(text="")
         movieTitle = validation.findClosestMovie(movie_entry.get().lower())
         movieRating = float(rating_entry.get())
-        show_movie_details(movieTitle, movieRating, validRec)
+        show_movie_details(movieTitle, movieRating, rec)
     else:
         error_label.config(text="Invalid number, try again (1-15).")
 
 # function to show the movie details page
 def show_movie_details(title, rating, rec):
-
     recMoviesList = validation.similarMovies(title, rating, rec)
 
     movies_list = ""

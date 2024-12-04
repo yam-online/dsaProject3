@@ -26,7 +26,7 @@ def isValidRating(string):
     try:
         val = float(string)
         if (val <= 5 and val >= 0):
-            return val
+            return True
     except:
         return False
 
@@ -35,7 +35,7 @@ def isValidNumber(string):
     try:
         val = int(string)
         if (val <= 15 and val >= 1):
-            return val
+            return True
     except:
         return False
 
