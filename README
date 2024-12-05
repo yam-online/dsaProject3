@@ -1,0 +1,11 @@
+To run the application:
+
+Install these dependencies
+
+- pip install pandas
+
+for running the application through the terminal:
+- python analysis.py 
+
+for running the application through the GUI (Graphical User Interface):
+- python main.py 
